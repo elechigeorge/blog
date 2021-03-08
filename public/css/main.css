@@ -1,0 +1,20 @@
+body {
+  background: #2c2c2c !important;
+}
+.card-img {
+  background: url('/images/mosque.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+}
+
+.bg {
+  background-image: url(uploads\images\16152296518325a1ce0894c8ea9.0803308615118419293136.png);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0.24;
+}

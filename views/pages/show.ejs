@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <h2>Here's our menu</h2>
+        <p>
+            <italic>make your choice, and we will make it come true</italic>
+        </p>
+        <hr />
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; height: 100px; ">
+            <% blogs.forEach( blog => { %>
+            <div class="card mt-2" style="width: 18rem; ">
+                <img class="card-img-top" style="height: 120px;" src="/uploads/images/<%= blog.img %>"
+                    alt="Card image cap">
+
+
+                <div class="card-body">
+                    <h5 class="card-title"><%= blog.title %></h5>
+
+                    <h3 class="card-text"><%= blog.price %></h3>
+                    <hr />
+                    <a href="" class="btn btn-primary" id="order">Order</a>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </main>
+
+
+    <script src="../../public/js/index.js"></script>
+</body>
+
+</html>
