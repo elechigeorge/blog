@@ -2,6 +2,7 @@
 
 const express = require('express');
 const Blog = require('./../models/Blog');
+const Order = require('./../models/Order');
 const router = express.Router();
 const multer = require('multer');
 
@@ -29,6 +30,16 @@ const upload = multer({
 
 router.get('/new', (request, response) => {
   response.render('new');
+});
+
+// route that handles edit view
+router.get('/', async (request, response) => {
+  let blog = await Blog.find();
+
+  // create new order
+  response.status(200).json(blog)
+
+  // response.render('edit', { blog: blog });
 });
 
 //view route
@@ -65,6 +76,8 @@ router.post('/', upload.single('image'), async (request, response) => {
 // route that handles edit view
 router.get('/edit/:id', async (request, response) => {
   let blog = await Blog.findById(request.params.id);
+
+  // create new order
   response.render('edit', { blog: blog });
 });
 

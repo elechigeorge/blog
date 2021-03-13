@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
 const blogRouter = require('./routes/blogs');
+const orderRouter = require('./routes/order');
 const Blog = require('./models/Blog');
 const app = express();
 
@@ -49,6 +50,7 @@ app.get('/create', function (req, res) {
 
 app.use(express.static('public'));
 app.use('/blogs', blogRouter);
+app.use('/order', orderRouter);
 
 // listen port
 app.listen(5000);

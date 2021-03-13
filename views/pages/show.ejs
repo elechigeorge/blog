@@ -29,7 +29,8 @@
 
                     <h3 class="card-text"><%= blog.price %></h3>
                     <hr />
-                    <a href="" class="btn btn-primary" id="order">Order</a>
+
+                    <button type="button" class="btn btn-primary" onclick="sendItem(blog.slug)">Order</button>
                 </div>
             </div>
             <% }) %>
