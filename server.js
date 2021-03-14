@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 
 //bring in mongoose
 const mongoose = require('mongoose');
@@ -22,6 +23,7 @@ mongoose.connect('mongodb+srv://user:user@hundred.qf4a8.mongodb.net/myFirstDatab
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+app.use(cors())
 
 
 
@@ -48,7 +50,8 @@ app.get('/create', function (req, res) {
 });
 
 
-app.use(express.static('public'));
+
+app.use(express.static(__dirname + '/public'));
 app.use('/blogs', blogRouter);
 app.use('/order', orderRouter);
 

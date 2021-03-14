@@ -1,22 +1,26 @@
-const moreButton = document.querySelectorAll('.more');
 
-const Order = document.querySelector('#order')
 
-// for (let i = 0; i < moreButton.length; i++) {
-//   moreButton[i].addEventListener('click', () => {
-//     moreButton[i].children[1].classList.toggle('d-none');
-//   });
-// }
 
-// Order.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   window.alert("Your Order has been placed")
-// })
+async function sendItem(param) {
+  try {
+    await fetch(`http://localhost:5000/order/${param}`, {
+      method: "POST",
+      mode: 'cors',
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      return res.json()
+    }).then((data) => {
+      window.alert('Order Submitted....')
+    })
 
-function sendItem(val) {
-  console.log(val)
+
+  } catch (error) {
+    console.error(error)
+  }
+
 }
-
-
 
 

@@ -67,8 +67,9 @@ router.post('/', upload.single('image'), async (request, response) => {
   try {
     blog = await blog.save();
 
-    response.redirect('show');
+    response.redirect('show')
   } catch (error) {
+    response.status(500)
     console.log(error);
   }
 });

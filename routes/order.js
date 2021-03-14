@@ -33,7 +33,7 @@ router.get('/new', (request, response) => {
 });
 
 //view route
-router.post('/:slug', async (request, response) => {
+router.post('/:slug', async (request, response, next) => {
     try {
         let blog = await Blog.findOne({ slug: request.params.slug });
 
@@ -52,13 +52,13 @@ router.post('/:slug', async (request, response) => {
         order = await order.save();
 
         response.status(200).json(order)
-        response.redirect('/show');
 
         //   if (blog) {
         //     response.redirect('pages/show');
         //   } else {
         //     response.redirect('/');
         //   }
+
     } catch (error) {
         response.status(500).json(error)
     }
