@@ -10,6 +10,7 @@ const methodOverride = require('method-override');
 const blogRouter = require('./routes/blogs');
 const orderRouter = require('./routes/order');
 const Blog = require('./models/Blog');
+const Order = require('./models/Order');
 const app = express();
 
 //connect to mongoose
@@ -32,6 +33,12 @@ app.get('/show', async (request, response) => {
   let blogs = await Blog.find().sort({ timeCreated: 'desc' });
 
   response.render('pages/show', { blogs: blogs });
+});
+
+app.get('/orders', async (request, response) => {
+  let blogs = await Order.find().sort({ timeCreated: 'desc' });
+
+  response.render('pages/orders', { blogs: blogs });
 });
 
 // index page

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="display-alert">
+
+        </div>
+        <h2>Lists of orders</h2>
+
+        <hr />
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; height: 100px; ">
+            <% blogs.forEach( blog => { %>
+            <div class="card mt-2" style="width: 18rem; ">
+                <img class="card-img-top" style="height: 120px;" src="/uploads/images/<%= blog.img %>"
+                    alt="Card image cap">
+
+
+                <div class="card-body">
+                    <h5 class="card-title"><%= blog.title %></h5>
+
+
+
+
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </main>
+
+
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
