@@ -14,7 +14,7 @@ const Order = require('./models/Order');
 const app = express();
 
 //connect to mongoose
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect('mongodb+srv://user:user@hundred.qf4a8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
