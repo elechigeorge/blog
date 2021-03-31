@@ -32,14 +32,11 @@ router.get('/new', (request, response) => {
     response.render('new');
 });
 
-//view route
-router.post('/:slug', async (request, response, next) => {
+// //view route
+router.put('/:id', async (request, response, next) => {
     try {
-        let blog = await Blog.findOne({ slug: request.params.slug });
-
-
-        if (!blog) throw new Error({ msg: "inva" });
-
+        request.blog = await Blog.findById(request.params.id);
+        let blog = request.blog;
 
 
         let order = new Order({
@@ -47,23 +44,49 @@ router.post('/:slug', async (request, response, next) => {
             price: blog.price,
             description: blog.description,
             img: blog.img,
+            address: request.body.address,
+            tel: request.body.contact
         });
 
         order = await order.save();
 
-        response.status(200).json(order)
+        response.status(200);
 
-        //   if (blog) {
-        //     response.redirect('pages/show');
-        //   } else {
-        //     response.redirect('/');
-        //   }
+        response.render('pages/success');
+
 
     } catch (error) {
-        response.status(500).json(error)
+        response.status(500).json(error);
     }
 
 });
+
+// route that handles edit view
+router.get('/edit/:id', async (request, response) => {
+    let blog = await Blog.findById(request.params.id);
+
+    // create new order
+    response.render('pages/edit', { blog: blog });
+});
+
+//route to handle updates
+// router.put('/:id', async (request, response) => {
+//     request.blog = await Blog.findById(request.params.id);
+//     let blog = request.blog;
+
+//     blog.title = request.body.title;
+//     blog.price = request.body.price;
+//     blog.description = request.body.description;
+
+//     try {
+//       blog = await blog.save();
+//       //redirect to the view route
+//       response.redirect(`/blogs/${blog.slug}`);
+//     } catch (error) {
+//       console.log(error);
+//       response.redirect(`/seblogs/edit/${blog.id}`, { blog: blog });
+//     }
+//   });
 
 
 
@@ -77,28 +100,6 @@ router.get('/', async (request, response) => {
     // response.render('edit', { blog: blog });
 });
 
-//route to handle updates
-router.put('/:id', async (request, response) => {
-    request.blog = await Blog.findById(request.params.id);
-    let blog = request.blog;
-    blog.title = request.body.title;
-    blog.price = request.body.price;
-    blog.description = request.body.description;
 
-    try {
-        blog = await blog.save();
-        //redirect to the view route
-        response.redirect(`/blogs/${blog.slug}`);
-    } catch (error) {
-        console.log(error);
-        response.redirect(`/seblogs/edit/${blog.id}`, { blog: blog });
-    }
-});
-
-///route to handle delete
-router.delete('/:id', async (request, response) => {
-    await Blog.findByIdAndDelete(request.params.id);
-    response.redirect('/');
-});
 
 module.exports = router;

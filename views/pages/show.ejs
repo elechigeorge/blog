@@ -33,13 +33,16 @@
                     <h3 class="card-text"><%= blog.price %></h3>
                     <hr />
 
-                    <button type="button" class="btn btn-primary" onclick="sendItem('<%=blog.slug%>')">Order</button>
+                    <a class="btn btn-primary" href="/order/edit/<%= blog.id %>">Order</a>
 
                 </div>
             </div>
+
             <% }) %>
         </div>
     </main>
+
+
 
 
     <script src="/js/index.js"></script>

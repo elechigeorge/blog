@@ -33,6 +33,14 @@ const orderSchema = new mongoose.Schema({
         default: 'placeholder.jpg',
     },
     slug: { type: String, slug: 'title', unique: true, slug_padding_size: 2 },
+    address: {
+        type: String,
+        default: 'placeho',
+    },
+    tel: {
+        type: String,
+        default: 'place',
+    },
 });
 
 orderSchema.pre('validate', function (next) {

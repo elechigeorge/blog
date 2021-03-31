@@ -27,9 +27,15 @@ app.use(methodOverride('_method'));
 app.use(cors())
 
 
-
 //route for the index
 app.get('/show', async (request, response) => {
+  let blogs = await Blog.find().sort({ timeCreated: 'desc' });
+
+  response.render('pages/show', { blogs: blogs });
+});
+
+//route for the index
+app.get('/order/show', async (request, response) => {
   let blogs = await Blog.find().sort({ timeCreated: 'desc' });
 
   response.render('pages/show', { blogs: blogs });
@@ -55,6 +61,7 @@ app.get('/about', function (req, res) {
 app.get('/create', function (req, res) {
   res.render('pages/new');
 });
+
 
 
 
